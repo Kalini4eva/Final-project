@@ -4,6 +4,6 @@ import sender_stand_request
 
 
 def test_order():
-    test_order.response = sender_stand_request.get_order_track('order')
+    test_order.response = sender_stand_request.get_order_track('track')
 
     assert test_order.response.status_code == 200
