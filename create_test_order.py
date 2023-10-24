@@ -1,9 +1,18 @@
 #Калиничева Алена, 9-поток, финальный проект. Инженер по тестированию плюс.
 
+import data
 import sender_stand_request
 
 
-def test_order():
-    test_order.response = sender_stand_request.get_order_track('track')
+def create_order():
+    track = sender_stand_request.post_new_order()
+    return str(track.json()["track"])
 
-    assert test_order.response.status_code == 200
+
+def test_get_order_by_track_success():
+    track = create_order()
+    current_params = data.track.copy()
+    current_params["t"] = track
+    response = sender_stand_request.get_order_by_track_number(current_params)
+    assert response.status_code == 200
+
